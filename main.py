@@ -1,39 +1,28 @@
 import streamlit as st
 
-# MBTI ➡ 동물 매핑
-mbti_to_animal = {
-    "ISTJ": ("🐘 코끼리", "https://example.com/elephant.gif"),
-    "ISFJ": ("🦉 부엉이", "https://example.com/owl.gif"),
-    "INFJ": ("🦄 유니콘", "https://example.com/unicorn.gif"),
-    "INTJ": ("🦊 여우", "https://example.com/fox.gif"),
-    "ISTP": ("🐆 표범", "https://example.com/leopard.gif"),
-    "ISFP": ("🦌 사슴", "https://example.com/deer.gif"),
-    "INFP": ("🐱 고양이", "https://example.com/cat.gif"),
-    "INTP": ("🐙 문어", "https://example.com/octopus.gif"),
-    "ESTP": ("🐯 호랑이", "https://example.com/tiger.gif"),
-    "ESFP": ("🐬 돌고래", "https://example.com/dolphin.gif"),
-    "ENFP": ("🐶 강아지", "https://example.com/dog.gif"),
-    "ENTP": ("🦜 앵무새", "https://example.com/parrot.gif"),
-    "ESTJ": ("🦁 사자", "https://example.com/lion.gif"),
-    "ESFJ": ("🐻 곰", "https://example.com/bear.gif"),
-    "ENFJ": ("🦋 나비", "https://example.com/butterfly.gif"),
-    "ENTJ": ("🦅 독수리", "https://example.com/eagle.gif")
-}
-
+# 페이지 설정
 st.set_page_config(page_title="MBTI 동물 추천기", page_icon="✨")
 
-st.markdown("<h1 style='text-align: center;'>🌟 MBTI 동물 추천기 ✨</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>당신의 성격 유형에 맞는 동물은? 🧠➡️🐾</h3>", unsafe_allow_html=True)
+# CSS 스타일 (sparkle 배경 효과)
+st.markdown("""
+    <style>
+    body {
+        background-image: url("https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif");
+        background-size: cover;
+    }
+    .stApp {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 1rem;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-# 드롭다운 메뉴로 선택
-selected_mbti = st.selectbox("당신의 MBTI를 선택하세요!", options=list(mbti_to_animal.keys()))
-
-# 결과 출력
-if selected_mbti:
-    animal_name, image_url = mbti_to_animal[selected_mbti]
-    
-    st.markdown(f"### 당신의 MBTI는 `{selected_mbti}` 이군요!")
-    st.markdown(f"### 추천 동물은... {animal_name} ✨")
-    st.image(image_url, use_column_width=True)
-    
-    st.balloons()
+# MBTI 정보 사전
+mbti_info = {
+    "ISTJ": ("🐘 코끼리", "https://media.giphy.com/media/ZFTu1EUQz3r0k/giphy.gif", "책임감 있고 차분한 ISTJ는 조용한 리더 타입의 코끼리와 닮았어요."),
+    "ISFJ": ("🦉 부엉이", "https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif", "조용하지만 깊이 있는 사고를 하는 ISFJ는 지혜로운 부엉이와 잘 어울려요."),
+    "INFJ": ("🦄 유니콘", "https://media.giphy.com/media/iicDrNGWxHmDrIni6j/giphy.gif", "이상적이고 희망찬 INFJ는 신비로운 유니콘과 닮았어요."),
+    "INTJ": ("🦊 여우", "https://media.giphy.com/media/ToMjGp3FbEtv8Y1y7MI/giphy.gif", "계획적이고 전략적인 INTJ는 날카로운 감각을 가진 여우 같아요."),
+    "ISTP": ("🐆 표범", "https://media.giphy.com/media/JqDeI2yjpSRgdh35oe/giphy.gif", "즉흥적이고 모험적인 ISTP는 민첩한 표범과 닮았어요."),
+    "ISFP": ("🦌 사슴", "https://media.giphy.com
