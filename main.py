@@ -3,7 +3,7 @@ import streamlit as st
 # 페이지 설정
 st.set_page_config(page_title="MBTI 동물 추천기", page_icon="🐾")
 
-# MBTI 정보 사전 (동물 이모지 + 설명)
+# MBTI 데이터 (이모지, 동물 이름, 설명)
 mbti_info = {
     "ISTJ": ("🐘", "코끼리", "책임감 있고 차분한 ISTJ는 조용한 리더 타입의 코끼리와 닮았어요."),
     "ISFJ": ("🦉", "부엉이", "조용하지만 깊이 있는 사고를 하는 ISFJ는 지혜로운 부엉이와 잘 어울려요."),
@@ -23,17 +23,35 @@ mbti_info = {
     "ENTJ": ("🦅", "독수리", "결단력 있고 야망이 큰 ENTJ는 고공에서 세상을 보는 독수리와 같아요."),
 }
 
-# 제목
+# 앱 타이틀
 st.markdown("<h1 style='text-align: center;'>🌟 MBTI 동물 추천기 🐾</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>당신의 성격 유형에 맞는 동물은?</h3>", unsafe_allow_html=True)
 
-# 드롭다운으로 MBTI 선택
-selected_mbti = st.selectbox("당신의 MBTI를 선택하세요!", options=list(mbti_info.keys()))
+# 세션 상태로 MBTI 저장
+if "selected_mbti" not in st.session_state:
+    st.session_state.selected_mbti = None
 
-# 결과 출력
-if selected_mbti:
-    emoji, animal_name, reason = mbti_info[selected_mbti]
+# 선택되지 않았을 때 질문 표시
+if st.session_state.selected_mbti is None:
+    st.markdown("## 👉 당신의 MBTI는 무엇인가요?")
     
-    st.markdown(f"## {selected_mbti} 유형의 추천 동물은...")
-    st.markdown(f"# {emoji} {animal_name}")
+    # MBTI 버튼 나열 (4열 그리드)
+    cols = st.columns(4)
+    mbti_list = list(mbti_info.keys())
+
+    for i, mbti in enumerate(mbti_list):
+        col = cols[i % 4]
+        if col.button(mbti):
+            st.session_state.selected_mbti = mbti
+
+# MBTI가 선택되면 결과 출력
+else:
+    mbti = st.session_state.selected_mbti
+    emoji, animal, reason = mbti_info[mbti]
+
+    st.markdown(f"## {mbti} 유형의 추천 동물은...")
+    st.markdown(f"# {emoji} {animal}")
     st.markdown(f"### 👉 선택 이유: {reason}")
+    
+    if st.button("🔄 다시 선택하기"):
+        st.session_state.selected_mbti = None
