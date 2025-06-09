@@ -1,9 +1,6 @@
 import streamlit as st
-st.title('나의 첫 웹앱 프로젝트 by SANGHEE')
-st.write('OMG 이게 되네?')
-import streamlit as st
 
-# 🎯 MBTI 동물 매핑 딕셔너리
+# MBTI ➡ 동물 매핑
 mbti_to_animal = {
     "ISTJ": ("🐘 코끼리", "https://example.com/elephant.gif"),
     "ISFJ": ("🦉 부엉이", "https://example.com/owl.gif"),
@@ -28,18 +25,15 @@ st.set_page_config(page_title="MBTI 동물 추천기", page_icon="✨")
 st.markdown("<h1 style='text-align: center;'>🌟 MBTI 동물 추천기 ✨</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>당신의 성격 유형에 맞는 동물은? 🧠➡️🐾</h3>", unsafe_allow_html=True)
 
-# 사용자 입력 받기
-mbti_input = st.text_input("당신의 MBTI를 입력하세요 (예: INFP)", max_chars=4).upper()
+# 드롭다운 메뉴로 선택
+selected_mbti = st.selectbox("당신의 MBTI를 선택하세요!", options=list(mbti_to_animal.keys()))
 
-# 추천 결과
-if mbti_input in mbti_to_animal:
-    animal_name, image_url = mbti_to_animal[mbti_input]
+# 결과 출력
+if selected_mbti:
+    animal_name, image_url = mbti_to_animal[selected_mbti]
     
-    st.markdown(f"### 당신의 MBTI는 `{mbti_input}` 이군요!")
+    st.markdown(f"### 당신의 MBTI는 `{selected_mbti}` 이군요!")
     st.markdown(f"### 추천 동물은... {animal_name} ✨")
     st.image(image_url, use_column_width=True)
     
-    st.balloons()  # 🎈풍선 애니메이션
-else:
-    if mbti_input:
-        st.warning("올바른 MBTI 4글자를 입력해주세요! 예: ENFP")
+    st.balloons()
