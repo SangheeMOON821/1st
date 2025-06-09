@@ -4,120 +4,82 @@ import time
 # 페이지 설정
 st.set_page_config(page_title="MBTI 동물 추천기", page_icon="🐾", layout="wide")
 
-# 모바일 모드 선택
-device_mode = st.sidebar.toggle("📱 모바일 최적화 모드", value=False)
-if device_mode:
-    st.markdown("<style>img {width: 100% !important;}</style>", unsafe_allow_html=True)
-
-# MBTI 데이터
+# 데이터: MBTI → (이모지, 동물이름, 동물GIF, 설명, 잘 맞는 MBTI + 이유, 안 맞는 MBTI + 이유, 버튼용 이미지)
 mbti_data = {
-    "INTJ": {"animal": "올빼미", "emoji": "🦉", "desc": "지혜롭고 전략적인 성격의 INTJ는 밤에 사냥하는 올빼미와 닮았어요.",
-             "image": "https://i.imgur.com/XdP9qLw.png", "gif": "https://media.giphy.com/media/3o6ZsXR5DM3fRllkIo/giphy.gif",
-             "good": ("ENFP", "창의성과 전략이 만나 시너지를 냅니다."),
-             "bad": ("ESFP", "즉흥성과 계획성이 충돌할 수 있어요.")},
-    "INTP": {"animal": "부엉이", "emoji": "🦉", "desc": "논리적이고 분석적인 INTP는 조용히 관찰하는 부엉이와 닮았어요.",
-             "image": "https://i.imgur.com/KqOQwHo.png", "gif": "https://media.giphy.com/media/Zd6P1W0Rjv5MY/giphy.gif",
-             "good": ("ENTP", "지적 대화가 끊이지 않아요."),
-             "bad": ("ESFJ", "감성 중심 대화에서 어려움을 겪을 수 있어요.")},
-    "ENTJ": {"animal": "사자", "emoji": "🦁", "desc": "리더십 강하고 목표 지향적인 ENTJ는 사자와 어울려요.",
-             "image": "https://i.imgur.com/4AiXzf8.png", "gif": "https://media.giphy.com/media/J1doTdGCIkPLa/giphy.gif",
-             "good": ("INTP", "아이디어를 실행으로 옮기는 좋은 파트너입니다."),
-             "bad": ("INFP", "결정 방식에서 큰 차이가 있어요.")},
-    "ENTP": {"animal": "여우", "emoji": "🦊", "desc": "재치 있고 즉흥적인 ENTP는 호기심 많은 여우와 닮았어요.",
-             "image": "https://i.imgur.com/JEkzP6P.png", "gif": "https://media.giphy.com/media/hp3dmE4gCWA6I/giphy.gif",
-             "good": ("INFJ", "서로의 차이가 매력으로 작용합니다."),
-             "bad": ("ISFJ", "혼란을 싫어하는 성향과 충돌할 수 있어요.")},
-    "INFJ": {"animal": "고양이", "emoji": "😺", "desc": "신비롭고 내향적인 INFJ는 독립적인 고양이와 어울려요.",
-             "image": "https://i.imgur.com/0C2rGNC.png", "gif": "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
-             "good": ("ENFP", "감정적 유대가 깊어요."),
-             "bad": ("ESTP", "즉흥적인 환경에 지칠 수 있어요.")},
-    "INFP": {"animal": "사슴", "emoji": "🦌", "desc": "감수성 풍부하고 따뜻한 INFP는 여린 사슴과 닮았어요.",
-             "image": "https://i.imgur.com/2FK5m1G.png", "gif": "https://media.giphy.com/media/IY9jKX0u4zA9m/giphy.gif",
-             "good": ("ENFJ", "정서적 지지와 이해가 넘쳐요."),
-             "bad": ("ESTJ", "지나치게 논리적일 수 있어요.")},
-    "ENFJ": {"animal": "강아지", "emoji": "🐶", "desc": "사람을 잘 챙기고 따뜻한 ENFJ는 충성심 강한 강아지와 잘 어울려요.",
-             "image": "https://i.imgur.com/LjDiD1a.png", "gif": "https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif",
-             "good": ("INFP", "감정 공유가 잘 됩니다."),
-             "bad": ("ISTP", "과도한 관심이 부담될 수 있어요.")},
-    "ENFP": {"animal": "돌고래", "emoji": "🐬", "desc": "에너지 넘치고 사교적인 ENFP는 장난기 많은 돌고래와 닮았어요!",
-             "image": "https://i.imgur.com/G4gXyOw.png", "gif": "https://media.giphy.com/media/11s7Ke7jcNxCHS/giphy.gif",
-             "good": ("INFJ", "깊이 있는 대화가 가능해요."),
-             "bad": ("ISTJ", "자유성과 규칙성이 충돌해요.")},
-    "ISTJ": {"animal": "거북이", "emoji": "🐢", "desc": "신중하고 책임감 있는 ISTJ는 꾸준한 거북이와 닮았어요.",
-             "image": "https://i.imgur.com/4m1b1qj.png", "gif": "https://media.giphy.com/media/fdLRZl3lY3eww/giphy.gif",
-             "good": ("ESFJ", "같은 생활 리듬을 가지고 있어요."),
-             "bad": ("ENFP", "즉흥성에 피로함을 느낄 수 있어요.")},
-    "ISFJ": {"animal": "판다", "emoji": "🐼", "desc": "다정하고 조용한 ISFJ는 평화를 사랑하는 판다와 잘 맞아요.",
-             "image": "https://i.imgur.com/G0y2Khz.png", "gif": "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
-             "good": ("ESFP", "서로를 배려하며 잘 지낼 수 있어요."),
-             "bad": ("ENTP", "너무 빠른 변화에 혼란스러워요.")},
-    "ESTJ": {"animal": "독수리", "emoji": "🦅", "desc": "실용적이고 체계적인 ESTJ는 통찰력 있는 독수리와 비슷해요.",
-             "image": "https://i.imgur.com/Zr1vHtO.png", "gif": "https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif",
-             "good": ("ISFJ", "현실적인 안정감을 나눌 수 있어요."),
-             "bad": ("INFP", "감성 위주의 결정에 답답함을 느낄 수 있어요.")},
-    "ESFJ": {"animal": "코끼리", "emoji": "🐘", "desc": "돌봄이 강한 ESFJ는 따뜻하고 사려 깊은 코끼리와 닮았어요.",
-             "image": "https://i.imgur.com/gFJY2ut.png", "gif": "https://media.giphy.com/media/3oz8xKaR836UJOYeOc/giphy.gif",
-             "good": ("ISFP", "정서적 안정감을 주고 받아요."),
-             "bad": ("INTP", "논리 위주의 대화가 피곤할 수 있어요.")},
-    "ISTP": {"animal": "표범", "emoji": "🦁", "desc": "조용히 효율적으로 움직이는 ISTP는 날렵한 표범과 비슷해요.",
-             "image": "https://i.imgur.com/WxduU2K.png", "gif": "https://media.giphy.com/media/YTbZzCkRQCEJa/giphy.gif",
-             "good": ("ESTP", "유사한 성향으로 자연스럽게 통합니다."),
-             "bad": ("ENFJ", "감정적 접근이 부담될 수 있어요.")},
-    "ISFP": {"animal": "토끼", "emoji": "🐰", "desc": "감성적이고 조용한 ISFP는 순한 토끼와 닮았어요.",
-             "image": "https://i.imgur.com/Qov6Y9j.png", "gif": "https://media.giphy.com/media/Q9aD5VYz2tW5C/giphy.gif",
-             "good": ("ESFJ", "정서적 케어가 잘 맞아요."),
-             "bad": ("ENTJ", "지배적인 태도에 위축될 수 있어요.")},
-    "ESTP": {"animal": "치타", "emoji": "🦁", "desc": "모험을 즐기고 즉흥적인 ESTP는 빠른 치타와 어울려요.",
-             "image": "https://i.imgur.com/79U5I94.png", "gif": "https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif",
-             "good": ("ISTP", "함께 활동적인 삶을 즐길 수 있어요."),
-             "bad": ("INFJ", "지속적인 자극에 피로할 수 있어요.")}
+    "ISTJ": {"emoji": "🐘", "animal": "코끼리", "gif": "https://media.giphy.com/media/ZFTu1EUQz3r0k/giphy.gif", "desc": "책임감 있고 차분한 ISTJ는 조용한 리더 타입의 코끼리와 닮았어요.", "good": ("ESFJ", "서로의 책임감과 조직력을 존중하며 잘 협력해요."), "bad": ("ENFP", "즉흥적인 ENFP는 계획적인 ISTJ에게 혼란을 줄 수 있어요."), "image": "https://i.pinimg.com/originals/aa/fb/8c/aafb8c1aa63a8c7f2e4b4d79e6b662a5.jpg"},
+    "ISFJ": {"emoji": "🦥", "animal": "나무늘보", "gif": "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif", "desc": "성실하고 따뜻한 ISFJ는 느긋하고 조용한 나무늘보와 닮았어요.", "good": ("ESFP", "사교적인 ESFP가 ISFJ의 내향성을 보완해줘요."), "bad": ("ENTP", "과도하게 활동적인 ENTP는 ISFJ를 지치게 만들 수 있어요."), "image": "https://i.pinimg.com/originals/48/31/57/483157f0a32599979280520aa406f630.jpg"},
+    "INFJ": {"emoji": "🦄", "animal": "유니콘", "gif": "https://media.giphy.com/media/iicDrNGWxHmDrIni6j/giphy.gif", "desc": "이상적이고 희망찬 INFJ는 신비로운 유니콘과 닮았어요.", "good": ("ENFP", "열정적인 ENFP가 INFJ의 이상을 현실로 도와줘요."), "bad": ("ESTP", "즉흥적이고 현실적인 ESTP는 INFJ의 깊이를 이해하기 어려워요."), "image": "https://i.pinimg.com/564x/16/54/f2/1654f2f25b4f3ef423cc169bcf1f9e21.jpg"},
+    "INTJ": {"emoji": "🦉", "animal": "올빼미", "gif": "https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif", "desc": "계획적이고 전략적인 INTJ는 통찰력 있는 올빼미와 닮았어요.", "good": ("ENTP", "창의적인 ENTP가 INTJ의 전략에 자극을 줘요."), "bad": ("ESFP", "즉흥적이고 감성적인 ESFP는 INTJ의 논리적 사고와 충돌할 수 있어요."), "image": "https://i.pinimg.com/originals/80/5a/49/805a495c9b0e5f8d5a7d82850973b3b3.jpg"},
+    "ISTP": {"emoji": "🐆", "animal": "치타", "gif": "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif", "desc": "독립적이고 실용적인 ISTP는 빠르고 날렵한 치타와 닮았어요.", "good": ("ESTP", "유사한 성향을 통해 함께 모험을 즐길 수 있어요."), "bad": ("ENFJ", "감성 중심의 ENFJ는 ISTP의 감정 표현 부족을 힘들어해요."), "image": "https://i.pinimg.com/564x/06/d3/cb/06d3cb0843aa5e2054a7b13d0195aaf3.jpg"},
+    "ISFP": {"emoji": "🦋", "animal": "나비", "gif": "https://media.giphy.com/media/3oEjHV0z8Aans4V5HW/giphy.gif", "desc": "감성적이고 자유로운 ISFP는 섬세한 나비와 닮았어요.", "good": ("ESFP", "서로의 감성과 자유를 존중하며 함께 즐겨요."), "bad": ("ENTJ", "계획적인 ENTJ는 자유로운 ISFP에게 부담이 될 수 있어요."), "image": "https://i.pinimg.com/564x/1b/da/18/1bda1879ce9f515524ca44b8cc19b084.jpg"},
+    "INFP": {"emoji": "🦌", "animal": "사슴", "gif": "https://media.giphy.com/media/8FNlmD5QW3tbm/giphy.gif", "desc": "이상주의적인 INFP는 섬세하고 조용한 사슴과 닮았어요.", "good": ("ENFJ", "타인을 잘 이해하는 ENFJ는 INFP를 따뜻하게 감싸줘요."), "bad": ("ESTJ", "엄격하고 규율 중심적인 ESTJ는 INFP에게 억압적으로 느껴질 수 있어요."), "image": "https://i.pinimg.com/564x/9d/17/91/9d179131e6cfdfc60e72fc75c8cfcd3f.jpg"},
+    "INTP": {"emoji": "🦉", "animal": "부엉이", "gif": "https://media.giphy.com/media/TPl5Nn8c9mAjM/giphy.gif", "desc": "논리적이고 분석적인 INTP는 지혜로운 부엉이와 닮았어요.", "good": ("ENTP", "비슷한 지적 호기심과 사고방식을 공유해요."), "bad": ("ESFJ", "감성적이고 체계적인 ESFJ는 INTP의 즉흥성을 받아들이기 힘들 수 있어요."), "image": "https://i.pinimg.com/564x/b8/5c/2a/b85c2acb7ffbbf334d74813fc697df7c.jpg"},
+    "ESTP": {"emoji": "🐯", "animal": "호랑이", "gif": "https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif", "desc": "모험심 강하고 에너지 넘치는 ESTP는 용감한 호랑이와 닮았어요.", "good": ("ISFP", "신중한 ISFP는 ESTP의 활력을 잘 받아줘요."), "bad": ("INFJ", "INFJ의 내면 세계를 ESTP는 이해하기 어려울 수 있어요."), "image": "https://i.pinimg.com/originals/f2/96/9b/f2969b172b1356ffb1bdf6e9a9ce7bcf.jpg"},
+    "ESFP": {"emoji": "🐬", "animal": "돌고래", "gif": "https://media.giphy.com/media/Qr9l1o4nx6Fos/giphy.gif", "desc": "사교적이고 에너지 넘치는 ESFP는 장난기 많은 돌고래와 닮았어요.", "good": ("ISFJ", "섬세한 ISFJ는 ESFP의 에너지를 안정적으로 받아줘요."), "bad": ("INTJ", "계획적이고 논리적인 INTJ는 ESFP의 즉흥성을 이해하지 못할 수 있어요."), "image": "https://i.pinimg.com/564x/23/ea/07/23ea0716b042b3f3a7a3b3ad294a7c57.jpg"},
+    "ENFP": {"emoji": "🐶", "animal": "강아지", "gif": "https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif", "desc": "열정적이고 따뜻한 ENFP는 충직한 강아지와 닮았어요.", "good": ("INFJ", "깊이 있는 INFJ와 ENFP의 에너지가 조화를 이뤄요."), "bad": ("ISTJ", "ENFP의 즉흥성이 ISTJ의 계획을 방해할 수 있어요."), "image": "https://i.pinimg.com/564x/b4/80/86/b4808642f8673f30a4e3184f1d95ec12.jpg"},
+    "ENTP": {"emoji": "🦊", "animal": "여우", "gif": "https://media.giphy.com/media/l0K4kWJir7C9H1vAA4/giphy.gif", "desc": "재치 있고 논리적인 ENTP는 영리한 여우와 닮았어요.", "good": ("INFJ", "이상적인 INFJ는 ENTP의 깊이를 더해줘요."), "bad": ("ISFJ", "조용한 ISFJ는 ENTP의 에너지에 지칠 수 있어요."), "image": "https://i.pinimg.com/564x/80/8f/6d/808f6d28e2135021a1ff62ef0cf6761e.jpg"},
+    "ESTJ": {"emoji": "🦁", "animal": "사자", "gif": "https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif", "desc": "강인하고 지도력 있는 ESTJ는 위엄 있는 사자와 닮았어요.", "good": ("ISFJ", "섬세한 ISFJ는 ESTJ의 리더십을 지지해줘요."), "bad": ("INFP", "감성적이고 이상주의적인 INFP는 ESTJ의 논리를 부담스러워해요."), "image": "https://i.pinimg.com/564x/36/87/e1/3687e17a590f6c45ac1db9f87291e6b5.jpg"},
+    "ESFJ": {"emoji": "🦢", "animal": "백조", "gif": "https://media.giphy.com/media/Xi2Xu0MejhsUo/giphy.gif", "desc": "사교적이고 배려심 깊은 ESFJ는 우아한 백조와 닮았어요.", "good": ("ISFP", "감성적인 ISFP는 ESFJ의 배려심에 따뜻하게 반응해요."), "bad": ("INTP", "자기 세계에 집중하는 INTP는 ESFJ에게 무심하게 느껴질 수 있어요."), "image": "https://i.pinimg.com/564x/17/62/1c/17621c17ee197ee7b44d2b3c6f73f699.jpg"},
+    "ENFJ": {"emoji": "🦓", "animal": "얼룩말", "gif": "https://media.giphy.com/media/hEc4k5pN17GZq/giphy.gif", "desc": "열정적이고 배려심 있는 ENFJ는 유쾌하고 따뜻한 얼룩말과 닮았어요.", "good": ("INFP", "이상적인 INFP는 ENFJ의 헌신에 감동받아요."), "bad": ("ISTP", "감정 표현이 적은 ISTP는 ENFJ에게 답답할 수 있어요."), "image": "https://i.pinimg.com/564x/8c/6d/f5/8c6df5b2c43c92460f1a3210bb6616a3.jpg"},
+    "ENTJ": {"emoji": "🦅", "animal": "독수리", "gif": "https://media.giphy.com/media/ToMjGpA1uC0ZGU7UduE/giphy.gif", "desc": "리더십과 추진력이 강한 ENTJ는 날카로운 독수리와 닮았어요.", "good": ("INTP", "지적인 INTP는 ENTJ의 비전을 뒷받침해줘요."), "bad": ("ISFP", "자유로운 ISFP는 ENTJ의 통제를 부담스러워할 수 있어요."), "image": "https://i.pinimg.com/564x/0b/2a/1b/0b2a1b7b3ac558b2dc91c017c2ea2df7.jpg"}
 }
 
-# 세션 상태
+# 세션 상태 초기화
 if "selected_mbti" not in st.session_state:
     st.session_state.selected_mbti = None
-if "show_result" not in st.session_state:
     st.session_state.show_result = False
+    st.session_state.mobile = False
 
-# 메인 화면
+# 모바일 최적화 버튼
+st.sidebar.markdown("## ⚙️ 설정")
+st.session_state.mobile = st.sidebar.checkbox("모바일 최적화 (간단 UI)", value=st.session_state.mobile)
+
+# 앱 제목
 st.markdown("<h1 style='text-align: center;'>🌟 MBTI 동물 추천기 🐾</h1>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center;'>당신의 성격 유형에 맞는 동물과 궁합까지 알려드려요!</h4>", unsafe_allow_html=True)
+st.markdown("---")
 
+# 선택 안 했을 때: 버튼으로 MBTI 고르기
 if st.session_state.selected_mbti is None:
     st.markdown("### 👉 당신의 MBTI는 무엇인가요?")
-    cols = st.columns(4)
-    for i, mbti in enumerate(mbti_data):
-        with cols[i % 4]:
+    mbti_list = list(mbti_data.keys())
+    cols = st.columns(2 if st.session_state.mobile else 4)
+
+    for i, mbti in enumerate(mbti_list):
+        col = cols[i % len(cols)]
+        with col:
             st.image(mbti_data[mbti]["image"], caption=mbti, use_column_width=True)
             if st.button(f"{mbti} 선택하기"):
                 st.session_state.selected_mbti = mbti
                 st.session_state.show_result = False
                 st.experimental_rerun()
 
-elif not st.session_state.show_result:
-    st.markdown("## 🔍 당신의 MBTI에 여워든 동물은?")
-    with st.spinner("결과 발견 중..."):
-        time.sleep(3)
-    st.session_state.show_result = True
-    st.experimental_rerun()
-
+# 선택 완료: 질문 후 카운트다운 → 결과 출력
 else:
-    mbti = st.session_state.selected_mbti
-    data = mbti_data[mbti]
-
-    st.markdown(f"## 🎉 {mbti} 유형의 추천 동물은?")
-    st.markdown(f"# {data['emoji']} {data['animal']}")
-    st.image(data["gif"], caption=f"{data['animal']} GIF", use_column_width=False)
-    st.markdown(f"#### 👉 이유: {data['desc']}")
-
-    st.markdown("---")
-    st.markdown(f"### ❤️ 잘 맞는 MBTI: **{data['good'][0]}**")
-    st.markdown(f"🔎 이유: {data['good'][1]}")
-
-    st.markdown(f"### 💔 잘 안 맞는 MBTI: **{data['bad'][0]}**")
-    st.markdown(f"🔎 이유: {data['bad'][1]}")
-
-    st.markdown("---")
-    if st.button("🔄 다시 선택하기"):
-        st.session_state.selected_mbti = None
-        st.session_state.show_result = False
+    if not st.session_state.show_result:
+        st.markdown(f"## 🤔 당신의 MBTI에 어울리는 동물은?")
+        with st.spinner("결과를 분석 중입니다..."):
+            time.sleep(3)
+        st.session_state.show_result = True
         st.experimental_rerun()
+    else:
+        mbti = st.session_state.selected_mbti
+        data = mbti_data[mbti]
+
+        st.markdown(f"## 🎉 {mbti} 유형의 추천 동물은?")
+        st.markdown(f"# {data['emoji']} {data['animal']}")
+        st.image(data["gif"], caption=f"{data['animal']} GIF", use_column_width=False)
+        st.markdown(f"#### 👉 이유: {data['desc']}")
+
+        st.markdown("---")
+        st.markdown(f"### ❤️ 잘 맞는 MBTI: **{data['good'][0]}**")
+        st.markdown(f"🔎 이유: {data['good'][1]}")
+
+        st.markdown(f"### 💔 잘 안 맞는 MBTI: **{data['bad'][0]}**")
+        st.markdown(f"🔎 이유: {data['bad'][1]}")
+
+        st.markdown("---")
+        if st.button("🔄 다시 선택하기"):
+            st.session_state.selected_mbti = None
+            st.session_state.show_result = False
+            st.experimental_rerun()
