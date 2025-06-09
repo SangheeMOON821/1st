@@ -1,0 +1,242 @@
+{
+  "ISTJ": {
+    "emoji": "🐘",
+    "animal": "코끼리",
+    "gif": "https://media.giphy.com/media/ZFTu1EUQz3r0k/giphy.gif",
+    "desc": "책임감 있고 차분한 ISTJ는 조용한 리더 타입의 코끼리와 닮았어요.",
+    "good": [
+      "ESFJ",
+      "서로의 책임감과 조직력을 존중하며 잘 협력해요."
+    ],
+    "bad": [
+      "ENFP",
+      "즉흥적인 ENFP는 계획적인 ISTJ에게 혼란을 줄 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/originals/aa/fb/8c/aafb8c1aa63a8c7f2e4b4d79e6b662a5.jpg"
+  },
+  "ISFJ": {
+    "emoji": "🐢",
+    "animal": "거북이",
+    "gif": "https://media.giphy.com/media/3oEduQAsYcJKQH2XsI/giphy.gif",
+    "desc": "배려심 많고 헌신적인 ISFJ는 묵묵히 나아가는 거북이와 닮았어요.",
+    "good": [
+      "ESFP",
+      "ESFP의 에너지와 ISFJ의 안정감이 조화를 이뤄요."
+    ],
+    "bad": [
+      "ENTP",
+      "ENTP의 논쟁적인 성향이 ISFJ에게 스트레스를 줄 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/fd/e1/3a/fde13a8f877e19c33407d3b5b2ff11f4.jpg"
+  },
+  "INFJ": {
+    "emoji": "🦄",
+    "animal": "유니콘",
+    "gif": "https://media.giphy.com/media/iicDrNGWxHmDrIni6j/giphy.gif",
+    "desc": "이상적이고 희망찬 INFJ는 신비로운 유니콘과 닮았어요.",
+    "good": [
+      "ENFP",
+      "열정적인 ENFP가 INFJ의 이상을 현실로 도와줘요."
+    ],
+    "bad": [
+      "ESTP",
+      "즉흥적이고 현실적인 ESTP는 INFJ의 깊이를 이해하기 어려워요."
+    ],
+    "image": "https://i.pinimg.com/564x/16/54/f2/1654f2f25b4f3ef423cc169bcf1f9e21.jpg"
+  },
+  "INTJ": {
+    "emoji": "🦉",
+    "animal": "부엉이",
+    "gif": "https://media.giphy.com/media/hEc4k5pN17GZq/giphy.gif",
+    "desc": "계획적이고 전략적인 INTJ는 지혜로운 부엉이와 닮았어요.",
+    "good": [
+      "ENTP",
+      "창의적인 아이디어를 실현할 수 있는 강력한 조합이에요."
+    ],
+    "bad": [
+      "ESFP",
+      "즉흥적인 ESFP는 INTJ의 계획을 방해할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/c4/4e/2f/c44e2f63e55834b477e23cbfa94f0cb2.jpg"
+  },
+  "ISTP": {
+    "emoji": "🐆",
+    "animal": "치타",
+    "gif": "https://media.giphy.com/media/3o6Zt6D1t7whf4dC3u/giphy.gif",
+    "desc": "논리적이고 실용적인 ISTP는 빠르고 민첩한 치타와 닮았어요.",
+    "good": [
+      "ESTP",
+      "둘 다 모험을 좋아하며 현실적인 문제 해결을 잘해요."
+    ],
+    "bad": [
+      "ENFJ",
+      "감정 중심적인 ENFJ는 ISTP의 무심함에 상처받을 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/94/7e/49/947e49479efba1b0879dd76db5fc87bc.jpg"
+  },
+  "ISFP": {
+    "emoji": "🦥",
+    "animal": "나무늘보",
+    "gif": "https://media.giphy.com/media/jUwpNzg9IcyrK/giphy.gif",
+    "desc": "감성적이고 조용한 ISFP는 여유로운 나무늘보와 닮았어요.",
+    "good": [
+      "ESFP",
+      "자유로운 성향이 잘 맞고 감정적으로 교감이 깊어요."
+    ],
+    "bad": [
+      "ENTJ",
+      "목표지향적인 ENTJ는 ISFP의 느긋함을 답답해할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/6e/b0/e6/6eb0e6c0035ae4d35e049b180cae20e4.jpg"
+  },
+  "INFP": {
+    "emoji": "🦋",
+    "animal": "나비",
+    "gif": "https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif",
+    "desc": "이상주의적이고 창의적인 INFP는 자유롭게 날아다니는 나비와 닮았어요.",
+    "good": [
+      "ENFJ",
+      "서로의 감정에 깊이 공감하며 따뜻한 관계를 유지해요."
+    ],
+    "bad": [
+      "ESTJ",
+      "현실적인 ESTJ는 INFP의 감성을 이해하기 어려워요."
+    ],
+    "image": "https://i.pinimg.com/564x/d2/84/3a/d2843a0e3213e54a609107a34fdbb9d5.jpg"
+  },
+  "INTP": {
+    "emoji": "🧠",
+    "animal": "문어",
+    "gif": "https://media.giphy.com/media/l0Ex3zV1d2d5V2EY8/giphy.gif",
+    "desc": "호기심 많고 분석적인 INTP는 다재다능한 문어와 닮았어요.",
+    "good": [
+      "ENTP",
+      "지적인 대화를 즐기며 함께 깊은 탐구를 할 수 있어요."
+    ],
+    "bad": [
+      "ESFJ",
+      "감정 중심의 ESFJ는 INTP의 논리적인 태도를 오해할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/94/c3/e2/94c3e2c013f56c980ffb75f5a379dbf3.jpg"
+  },
+  "ESTP": {
+    "emoji": "🐅",
+    "animal": "호랑이",
+    "gif": "https://media.giphy.com/media/L0Nmyy0x8H1yI/giphy.gif",
+    "desc": "모험을 즐기고 에너지 넘치는 ESTP는 용맹한 호랑이와 닮았어요.",
+    "good": [
+      "ISFP",
+      "서로를 자극하며 새로운 경험을 추구할 수 있어요."
+    ],
+    "bad": [
+      "INFJ",
+      "내향적인 INFJ는 ESTP의 강한 에너지를 버거워할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/7a/5c/d5/7a5cd5376e1d01dff7cbaf1b0cead18e.jpg"
+  },
+  "ESFP": {
+    "emoji": "🦜",
+    "animal": "앵무새",
+    "gif": "https://media.giphy.com/media/l3V0lsGtTMSB5YNgc/giphy.gif",
+    "desc": "사교적이고 밝은 ESFP는 수다스럽고 귀여운 앵무새와 닮았어요.",
+    "good": [
+      "ISFJ",
+      "따뜻한 배려와 활발함이 조화를 이뤄요."
+    ],
+    "bad": [
+      "INTJ",
+      "계획적인 INTJ는 즉흥적인 ESFP와 충돌할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/3a/26/42/3a264248a147b2f07ef1df5c0e97d022.jpg"
+  },
+  "ENFP": {
+    "emoji": "🐶",
+    "animal": "강아지",
+    "gif": "https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif",
+    "desc": "열정적이고 따뜻한 ENFP는 충직한 강아지와 닮았어요.",
+    "good": [
+      "INFJ",
+      "깊이 있는 INFJ와 ENFP의 에너지가 조화를 이뤄요."
+    ],
+    "bad": [
+      "ISTJ",
+      "ENFP의 즉흥성이 ISTJ의 계획을 방해할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/b4/80/86/b4808642f8673f30a4e3184f1d95ec12.jpg"
+  },
+  "ENTP": {
+    "emoji": "🦊",
+    "animal": "여우",
+    "gif": "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
+    "desc": "재치 있고 호기심 많은 ENTP는 똑똑한 여우와 닮았어요.",
+    "good": [
+      "INFJ",
+      "창의력과 직관이 결합되어 멋진 팀워크를 보여줘요."
+    ],
+    "bad": [
+      "ISFJ",
+      "논쟁을 즐기는 ENTP는 평화를 중시하는 ISFJ를 피곤하게 만들 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/11/c7/50/11c750cbd3a8e4e3c6ab9d775b9a8701.jpg"
+  },
+  "ESTJ": {
+    "emoji": "🦁",
+    "animal": "사자",
+    "gif": "https://media.giphy.com/media/Nm8ZPAGOwZUQM/giphy.gif",
+    "desc": "리더십 강하고 현실적인 ESTJ는 카리스마 있는 사자와 닮았어요.",
+    "good": [
+      "ISFJ",
+      "안정성과 실행력을 조화롭게 보여줘요."
+    ],
+    "bad": [
+      "INFP",
+      "이상주의적인 INFP는 현실적인 ESTJ와 충돌할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/b7/0c/84/b70c8471e4067d6fd6e55df693bf7e1a.jpg"
+  },
+  "ESFJ": {
+    "emoji": "🐼",
+    "animal": "판다",
+    "gif": "https://media.giphy.com/media/10VjiVoa9rWC4M/giphy.gif",
+    "desc": "친절하고 협동적인 ESFJ는 귀엽고 평화로운 판다와 닮았어요.",
+    "good": [
+      "ISFP",
+      "부드러운 감성으로 서로를 따뜻하게 대할 수 있어요."
+    ],
+    "bad": [
+      "INTP",
+      "논리 중심의 INTP는 감성적인 ESFJ와 충돌할 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/65/3c/8a/653c8ab709d8a7603e3a0f7a3c21c627.jpg"
+  },
+  "ENFJ": {
+    "emoji": "🦢",
+    "animal": "백조",
+    "gif": "https://media.giphy.com/media/3o7TKRwpns23QMNNiE/giphy.gif",
+    "desc": "이타적이고 리더십 있는 ENFJ는 우아한 백조와 닮았어요.",
+    "good": [
+      "INFP",
+      "깊이 있는 감정 교감으로 따뜻한 관계를 유지해요."
+    ],
+    "bad": [
+      "ISTP",
+      "감정 표현에 서툰 ISTP는 ENFJ와 소통에 어려움이 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/d7/ee/b0/d7eeb0f7751f41ef62c1efb1b0629cc9.jpg"
+  },
+  "ENTJ": {
+    "emoji": "🦈",
+    "animal": "상어",
+    "gif": "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif",
+    "desc": "목표 지향적이고 추진력 있는 ENTJ는 카리스마 넘치는 상어와 닮았어요.",
+    "good": [
+      "INTP",
+      "논리적인 INTP와 함께 강력한 팀을 만들 수 있어요."
+    ],
+    "bad": [
+      "ISFP",
+      "여유로운 ISFP는 ENTJ의 추진력에 부담을 느낄 수 있어요."
+    ],
+    "image": "https://i.pinimg.com/564x/6e/f8/4f/6ef84ff1bc54a231f0ab9a3125edff52.jpg"
+  }
+}
